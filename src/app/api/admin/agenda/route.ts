@@ -31,6 +31,40 @@ export async function POST(request: Request) {
 
     const dataAgenda = parseDataUTC(data)
 
+    // Verifica se a agenda já existe para encontrar horários removidos
+    const existingAgenda = await prisma.agenda.findUnique({
+      where: {
+        data_quadraId: {
+          data: dataAgenda,
+          quadraId,
+        },
+      },
+    })
+
+    if (existingAgenda) {
+      // Encontra horários que estavam na agenda mas não estão mais na nova requisição
+      const removedSlots = existingAgenda.horarios.filter(
+        (slot) => !horarios.includes(slot)
+      )
+
+      if (removedSlots.length > 0) {
+        // Cancela as reservas atreladas aos horários removidos
+        await prisma.reserva.updateMany({
+          where: {
+            quadraId,
+            data: dataAgenda,
+            slot: {
+              in: removedSlots,
+            },
+          },
+          data: {
+            status: 'CANCELADA_ADMIN',
+            motivo: 'Horário suspenso pela administração',
+          },
+        })
+      }
+    }
+
     const agenda = await prisma.agenda.upsert({
       where: {
         data_quadraId: {
@@ -73,6 +107,21 @@ export async function DELETE(request: Request) {
         { error: 'ID da agenda é obrigatório' },
         { status: 400 }
       )
+    }
+
+    const agenda = await prisma.agenda.findUnique({ where: { id } })
+    if (agenda) {
+      // Se a agenda do dia todo foi excluída, cancelamos também todas as reservas desse dia e quadra
+      await prisma.reserva.updateMany({
+        where: {
+          quadraId: agenda.quadraId,
+          data: agenda.data,
+        },
+        data: {
+          status: 'CANCELADA_ADMIN',
+          motivo: 'Dia suspenso pela administração',
+        },
+      })
     }
 
     await prisma.agenda.delete({ where: { id } })
