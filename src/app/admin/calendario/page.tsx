@@ -393,7 +393,7 @@ export default function AdminCalendarioPage() {
                   type="date"
                   value={loteDataBase}
                   onChange={e => setLoteDataBase(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#004B87] text-slate-800 bg-white shadow-sm"
+                  className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#004B87] text-slate-800 bg-white shadow-sm"
                 />
                 <p className="text-xs text-[#004B87] font-semibold mt-2.5 min-h-[16px] break-words">
                   {getWeekRangeText(loteDataBase)}
@@ -428,7 +428,7 @@ export default function AdminCalendarioPage() {
                       type="date"
                       value={loteFeriadoData}
                       onChange={e => setLoteFeriadoData(e.target.value)}
-                      className="flex-1 px-4 py-3 rounded-xl border border-[#009A44] focus:outline-none focus:ring-2 focus:ring-[#009A44] text-slate-800 bg-white shadow-sm w-full"
+                      className="flex-1 max-w-full min-w-0 px-4 py-3 rounded-xl border border-[#009A44] focus:outline-none focus:ring-2 focus:ring-[#009A44] text-slate-800 bg-white shadow-sm w-full"
                     />
                   </div>
                 )}

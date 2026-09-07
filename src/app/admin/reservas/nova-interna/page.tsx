@@ -221,14 +221,14 @@ export default function NovaReservaInternaPage() {
           </div>
         )}
 
-        <div className="pt-6 flex justify-end gap-3">
-          <Button variant="outline" onClick={() => router.push('/admin/calendario')}>
+        <div className="pt-6 flex flex-wrap sm:flex-nowrap justify-end gap-3">
+          <Button variant="outline" onClick={() => router.push('/admin/calendario')} className="w-full sm:w-auto">
             Cancelar
           </Button>
           <Button
             onClick={handleSalvar}
             disabled={salvando || !quadraId || !dataSelecionada || !motivo.trim() || horariosSelecionados.length === 0}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white px-8"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 w-full sm:w-auto"
           >
             {salvando ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
             Salvar Reserva ({horariosSelecionados.length} horários)

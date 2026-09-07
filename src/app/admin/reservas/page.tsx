@@ -487,7 +487,7 @@ export default function AdminReservasPage() {
           </button>
         )}
 
-        <div className="flex gap-3 ml-auto">
+        <div className="flex flex-wrap sm:flex-nowrap gap-3 w-full sm:w-auto sm:ml-auto">
           <button
             onClick={exportarCSV}
             className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl font-semibold transition-all shadow-sm h-11"
@@ -592,7 +592,7 @@ export default function AdminReservasPage() {
                       )}
                     </div>
                     
-                    <div className="flex gap-2 justify-end mt-2">
+                    <div className="flex flex-wrap gap-2 justify-end mt-2">
                       {r.user?.email && !isAdmin && (
                         <button
                           onClick={() => {

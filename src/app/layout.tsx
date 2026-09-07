@@ -26,7 +26,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${nunitoSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="min-h-full flex flex-col font-sans overflow-x-hidden">
         <NextAuthProvider>
           <Header />
           <main className="flex-1 flex flex-col">

@@ -43,9 +43,9 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-slate-100 relative">
+    <div className="flex-1 flex items-center justify-center bg-slate-100 relative py-8 px-4 sm:px-6 min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-112px)]">
       {/* Card Central */}
-      <div className="relative w-full max-w-[500px] bg-white pt-16 pb-10 px-8 sm:px-12 shadow-xl mx-4 mt-16 border border-slate-200">
+      <div className="relative w-full max-w-[500px] bg-white pt-16 pb-10 px-6 sm:px-12 shadow-xl border border-slate-200">
         {/* Header Azul sobreposto */}
         <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-[90%] bg-[#005191] py-4 shadow-lg rounded-sm">
           <h2 className="text-center text-white text-xl sm:text-2xl font-bold">Entrar</h2>
@@ -83,18 +83,18 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          <div className="flex justify-between items-center pt-4 gap-4">
+          <div className="flex justify-between items-center pt-4 gap-3 sm:gap-4">
             <Button 
               type="button"
               variant="outline"
               onClick={() => router.push('/cadastro')}
-              className="w-1/2 border-gray-400 text-[#005191] font-bold h-12 rounded-sm hover:bg-slate-50 transition-colors"
+              className="w-1/2 border-gray-400 text-[#005191] font-bold h-12 rounded-sm hover:bg-slate-50 transition-colors text-xs sm:text-sm px-2 tracking-wider"
             >
               CADASTRAR
             </Button>
             <Button 
               type="submit" 
-              className="w-1/2 bg-[#005191] hover:bg-[#003d6e] text-white font-bold h-12 rounded-sm transition-colors"
+              className="w-1/2 bg-[#005191] hover:bg-[#003d6e] text-white font-bold h-12 rounded-sm transition-colors text-xs sm:text-sm px-2 tracking-wider"
               disabled={loading}
             >
               {loading ? 'Acessando...' : 'ENTRAR'}
@@ -102,6 +102,6 @@ export default function LoginPage() {
           </div>
         </form>
       </div>
-    </main>
+    </div>
   );
 }

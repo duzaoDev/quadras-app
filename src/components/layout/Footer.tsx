@@ -12,7 +12,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="w-full bg-[#004B87] border-t-[5px] border-[#FFD100] text-white pt-10 mt-auto font-sans">
+    <footer className="w-full max-w-full overflow-hidden bg-[#004B87] border-t-[5px] border-[#FFD100] text-white pt-10 mt-auto font-sans">
       <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10 pb-10">
         
         <div className="flex flex-col gap-4">
