@@ -477,7 +477,7 @@ export default function AgendaSemanalPage() {
                           colSpan={quadrasModalidade.length} 
                           className={`border border-slate-200 bg-slate-100 p-3 text-center font-bold text-slate-700 uppercase ${dIdx > 0 ? 'border-l-4 border-l-black' : ''}`}
                         >
-                          {day.toLocaleDateString('pt-BR', { weekday: 'short' }).replace('.', '')}. {day.getDate()}/{day.getMonth() + 1}
+                          {day.toLocaleDateString('pt-BR', { weekday: 'long' })}, {String(day.getDate()).padStart(2, '0')}/{String(day.getMonth() + 1).padStart(2, '0')}
                         </th>
                       ))}
                     </tr>
@@ -627,11 +627,12 @@ export default function AgendaSemanalPage() {
 
                       return (
                         <div key={dataStrSingle} className={`mb-12 ${sdIdx > 0 ? 'print:break-before-page' : ''}`}>
-                          <h3 className="text-xl font-bold text-slate-800 mb-4 uppercase border-b-2 border-slate-200 pb-2">
-                            {singleDay.toLocaleDateString('pt-BR', { weekday: 'long' })}, {singleDay.getDate()}/{singleDay.getMonth() + 1}
+                          <h3 className="text-xl font-bold text-slate-800 mb-4 uppercase border-b-2 border-slate-200 pb-2 px-4">
+                            {singleDay.toLocaleDateString('pt-BR', { weekday: 'long' })}, {String(singleDay.getDate()).padStart(2, '0')}/{String(singleDay.getMonth() + 1).padStart(2, '0')}
                           </h3>
-                          <table className="w-full min-w-max border-collapse text-xs">
-                            <thead>
+                          <div className="overflow-x-auto">
+                            <table className="w-full min-w-max border-collapse text-xs">
+                              <thead>
                               <tr>
                                 <th className="border border-slate-200 bg-slate-50 p-2 text-center font-bold text-slate-500 uppercase w-20">
                                   Horário
@@ -703,6 +704,7 @@ export default function AgendaSemanalPage() {
                               ))}
                             </tbody>
                           </table>
+                          </div>
                         </div>
                       )
                     })}

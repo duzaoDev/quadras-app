@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-/**
- * Cria uma Date UTC midnight a partir de "YYYY-MM-DD".
- */
-function parseDataUTC(data: string) {
+function parseDataUTCInicio(data: string) {
   const [ano, mes, dia] = data.split('-').map(Number)
-  return new Date(Date.UTC(ano, mes - 1, dia))
+  return new Date(Date.UTC(ano, mes - 1, dia, 0, 0, 0, 0))
+}
+
+function parseDataUTCFim(data: string) {
+  const [ano, mes, dia] = data.split('-').map(Number)
+  return new Date(Date.UTC(ano, mes - 1, dia, 23, 59, 59, 999))
 }
 
 export async function GET(request: Request) {
@@ -29,8 +31,8 @@ export async function GET(request: Request) {
         ...(dataInicioStr && dataFimStr
           ? {
               data: {
-                gte: parseDataUTC(dataInicioStr),
-                lte: parseDataUTC(dataFimStr),
+                gte: parseDataUTCInicio(dataInicioStr),
+                lte: parseDataUTCFim(dataFimStr),
               },
             }
           : {}),
